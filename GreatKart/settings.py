@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'category',
     'store',
     'carts',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'GreatKart.wsgi.application'
+
+AUTH_USER_MODEL = 'accounts.Account'
 
 
 # Database
@@ -122,3 +125,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR /'media'
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
+
+
+# SMTP Configuration
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'djangoprojectsemail@gmail.com'
+EMAIL_HOST_PASSWORD = '909001Ico'
+EMAIL_USE_TLS = True

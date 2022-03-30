@@ -36,6 +36,7 @@ def add_cart(request, product_id):
     product = Product.objects.get(id=product_id)
     product_variation = []
     if request.method == 'POST':
+        # Get the product variations in product_variations: Example(Color: Red, Size: Small)
         for item in request.POST:
             key = item
             value = request.POST[key]
@@ -45,35 +46,35 @@ def add_cart(request, product_id):
                 product_variation.append(variation)
             except:
                 pass
-
     try:
+        # Open the existing cart or creating a new one
         cart = Cart.objects.get(cart_id=_cart_id(request)) # get the session id
     except Cart.DoesNotExist:
         cart = Cart.objects.create(cart_id=_cart_id(request))
     cart.save()
 
     is_cart_item_exists = Cart_item.objects.filter(product=product, cart=cart).exists()
+
     if is_cart_item_exists:
+        # Get all cart_items of the given product
         cart_item = Cart_item.objects.filter(product=product, cart=cart)
-        # Existing variations -> database
-        # Current variations -> product_variation
-        # item_id -> database
         ex_var_list = []
         id = []
+
         for item in cart_item:
-            variation_color = list(item.variations.colors())
-#            variation_size = item.variations.sizes()
-            variation_color.extend(list(item.variations.sizes()))
-            ex_var_list.append(variation_color)
+            # Look through each of the cart_items and save their variations in ex_var_list
+            variation_color_size = list(item.variations.colors())
+            variation_color_size.extend(list(item.variations.sizes()))
+            ex_var_list.append(variation_color_size)
+            # Save the cart_item id's for every ex_var_list variation
             id.append(item.id)
-        print('variation_color: ', variation_color)
-        print('product_variation: ', product_variation )
-        print('ex_var_list: ', ex_var_list)
 
         if product_variation in ex_var_list:
             # Increase the cart item quantity
+            # Get the index in the ex_var_list for the given product variations, and then getting the true cart_item id from the 'id' that we created earlier
             index = ex_var_list.index(product_variation)
             item_id = id[index]
+            print(index, item_id)
             item = Cart_item.objects.get(product=product, id=item_id)
             item.quantity += 1
             item.save()
@@ -119,4 +120,3 @@ def remove_cart(request, cart_item_id):
         else:
             cart_item.delete()
     return redirect('carts:cart')
-
