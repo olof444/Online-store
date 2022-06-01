@@ -137,5 +137,5 @@ MESSAGE_TAGS = {
 EMAIL_HOST = 'smtp.mail.yahoo.com'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'gotqni@yahoo.com'
-EMAIL_HOST_PASSWORD = '3888005841Ico'
+EMAIL_HOST_PASSWORD = '***************'
 EMAIL_USE_TLS = True
