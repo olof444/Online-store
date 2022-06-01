@@ -22,15 +22,18 @@ def store(request, category_slug=None):
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
         product_count = products.count()
+        cat_name = Category.objects.get(slug=category_slug)
     else:
         products = Product.objects.filter(is_available=True).order_by('id')
         paginator = Paginator(products, 3)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
         product_count = products.count()
+        cat_name = None
     context = {
         'products': paged_products,
         'product_count': product_count,
+        'cat_name': cat_name,
     }
     return render(request, 'store/store.html', context)
 

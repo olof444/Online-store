@@ -125,7 +125,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR /'media'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
@@ -134,8 +134,8 @@ MESSAGE_TAGS = {
 
 
 # SMTP Configuration
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'djangoprojectsemail@gmail.com'
-EMAIL_HOST_PASSWORD = '909001Ico'
+EMAIL_HOST = 'smtp.mail.yahoo.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'gotqni@yahoo.com'
+EMAIL_HOST_PASSWORD = '3888005841Ico'
 EMAIL_USE_TLS = True

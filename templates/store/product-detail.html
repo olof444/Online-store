@@ -65,7 +65,7 @@
     {% if product.is_available == True and product.stock > 0 %}
         {% if in_cart %}
             <button type="submit" class="btn  btn-success"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i></button>
-            <a href="{% url 'carts:cart' %}" class="btn  btn-outline-primary"> <span class="text">View Cart</span> <i class="fas fa-eye"></i></a>
+            <a href="{% url 'carts:cart' %}" class="btn btn-outline-primary"> <span class="text">View Cart</span> <i class="fas fa-eye"></i></a>
         {% else %}
 	        <button type="submit" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i></button>
         {% endif %}
